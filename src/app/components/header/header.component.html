@@ -1,8 +1,40 @@
 <header class="w-full py-4">
   <div class="max-w-5xl mx-auto flex items-center justify-between">
-    <a class="btn" routerLink="/">NG-Commerce</a>
-    <button class="btn btn-lg">
-      <fa-icon [icon]="faCartShopping"></fa-icon>
-    </button>
+    <div class="flex items-center gap-x-5">
+      <a class="text-xl" routerLink="/">NG-Commerce</a>
+      <a
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+        >All</a
+      >
+      <a
+        routerLink="/clothing"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+        >Clothings</a
+      >
+      <a
+        routerLink="/jewelery"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+        >Jewelry</a
+      >
+      <a
+        routerLink="/electronics"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+        >Electronics</a
+      >
+    </div>
+    <a routerLink="/shopping-cart">
+      <button class="btn btn-lg">
+        <fa-icon [icon]="faCartShopping"></fa-icon>
+      </button>
+    </a>
   </div>
 </header>
