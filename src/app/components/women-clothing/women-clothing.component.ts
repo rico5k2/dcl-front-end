@@ -2,12 +2,13 @@ import { Component, computed, inject, resource } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'app-electronics',
+  selector: 'app-women-clothing',
   imports: [],
-  templateUrl: './electronics.component.html',
+  templateUrl: './women-clothing.component.html',
+  styles: ``,
 })
-export class ElectronicsComponent {
-  private readonly productCategory = 'electronics';
+export class WomenClothingComponent {
+  private readonly productCategory = "women's clothing";
   private readonly apiService = inject(ApiService);
 
   productsResource = resource({

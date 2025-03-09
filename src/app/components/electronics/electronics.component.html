@@ -1,1 +1,10 @@
 <p>electronics works!</p>
+@if (isLoading()) {
+<p>this is loading...</p>
+} @else {
+<ul>
+  @for (product of productsResource.value(); track product.id) {
+  <li>{{ product.title }}</li>
+  }
+</ul>
+}
