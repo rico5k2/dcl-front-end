@@ -1,13 +1,18 @@
 import { Component, inject, resource, computed, effect } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCardSkeletonComponent } from '../product-card-skeleton/product-card-skeleton.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent, ProductCardSkeletonComponent],
   template: `
     @if (isLoading()) {
-    <p>this is loading...</p>
+    <div class="grid grid-cols-3 mx-auto max-w-5xl gap-6">
+      @for (item of [1,2,3]; track item) {
+      <app-product-card-skeleton />
+      }
+    </div>
     } @else {
     <div class="grid grid-cols-3 mx-auto max-w-5xl gap-6">
       @for (product of productsResource.value(); track product.id) {

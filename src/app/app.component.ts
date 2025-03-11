@@ -6,7 +6,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, FontAwesomeModule, HeaderComponent],
-  templateUrl: './app.component.html',
+  template: `
+    <app-header />
+    <main class="my-10 mt-28">
+      <router-outlet />
+    </main>
+  `,
 })
 export class AppComponent {
   title = 'Angular E-Commerce UI';
