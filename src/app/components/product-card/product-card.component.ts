@@ -77,7 +77,10 @@ export class ProductCardComponent {
   cartItems = computed(() => this.shoppingCartLocalStorageService.cartItems());
 
   addItem() {
-    this.shoppingCartLocalStorageService.addItem(this.product()!);
+    this.shoppingCartLocalStorageService.addItem({
+      ...this?.product()!,
+      quantity: 1, // Add default quantity
+    });
   }
 
   checkItemAlreadyExist() {

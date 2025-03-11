@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -50,8 +51,11 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
           >
         </div>
         <a routerLink="/shopping-cart">
-          <button class="btn btn-lg">
+          <button class="btn btn-lg relative">
             <fa-icon [icon]="faCartShopping"></fa-icon>
+            <div class="absolute -top-2 -right-2 badge badge-primary badge-sm">
+              {{ cartItemQuantity() }}
+            </div>
           </button>
         </a>
       </div>
@@ -65,5 +69,17 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
   `,
 })
 export class HeaderComponent {
+  private readonly shoppingCartLocalStorageService = inject(
+    ShoppingCartLocalStorageService
+  );
+
   faCartShopping = faCartShopping;
+
+  // Computed total quantity of cart items
+  cartItemQuantity = computed(() => {
+    return this.shoppingCartLocalStorageService.cartItems().reduce((a, c) => {
+      a += c?.quantity!;
+      return a;
+    }, 0);
+  });
 }
