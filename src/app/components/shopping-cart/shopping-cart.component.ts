@@ -264,6 +264,8 @@ export class ShoppingCartComponent {
     // Save payment info data
     if (this.rememberPaymentInfo() && this.paymentInfoData()) {
       this.paymentInfoLocalStorageService.saveData(this.paymentInfoData()!);
+    } else {
+      this.paymentInfoLocalStorageService.clearItem();
     }
 
     // Clear localStorage for shopping cart items
