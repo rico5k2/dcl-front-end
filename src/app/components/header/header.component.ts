@@ -13,7 +13,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
     >
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-x-5">
-          <a class="text-xl" routerLink="/">NG-Commerce</a>
+          <a class="text-xl btn btn-ghost" routerLink="/">NG-Commerce</a>
           <a
             routerLink="/"
             routerLinkActive="active-link"
@@ -53,9 +53,11 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
         <a routerLink="/shopping-cart">
           <button class="btn btn-lg relative">
             <fa-icon [icon]="faCartShopping"></fa-icon>
+            @if (cartItemQuantity() >= 1) {
             <div class="absolute -top-2 -right-2 badge badge-primary badge-sm">
               {{ cartItemQuantity() }}
             </div>
+            }
           </button>
         </a>
       </div>

@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../../type';
 import { faMinus, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 
 @Component({
   selector: 'app-shopping-cart-item',
@@ -10,7 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     <div class="flex items-start justify-start gap-x-4">
       <figure>
         <img
-          class="h-[110px] w-[120px] object-fill"
+          class="h-[130px] w-[140px] object-fill"
           [src]="item()?.image"
           alt="Shoes"
         />
@@ -20,17 +21,26 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
           <p class="font-bold">{{ item()?.title }}</p>
           <p class="font-bold text-lg mt-auto">$ {{ item()?.price }}</p>
         </div>
-        <div class="mt-5 flex items-center justify-between gap-x-4">
+        <div class="mt-3 flex items-center justify-between gap-x-4">
           <div class="flex items-center gap-x-2">
-            <button class="btn btn-soft btn-sm">
+            <button
+              (click)="decrementItemQuantity()"
+              class="btn btn-soft btn-sm"
+            >
               <fa-icon [icon]="faMinus"></fa-icon>
             </button>
             <span>{{ item()?.quantity }}</span>
-            <button class="btn btn-soft btn-sm">
+            <button
+              (click)="incrementItemQuantity()"
+              class="btn btn-soft btn-sm"
+            >
               <fa-icon [icon]="faPlus"></fa-icon>
             </button>
           </div>
-          <button class="btn btn-soft btn-error btn-sm">
+          <button
+            (click)="removeItemQuantity()"
+            class="btn btn-soft btn-error btn-sm"
+          >
             <fa-icon [icon]="faTrashCan"></fa-icon>
           </button>
         </div>
@@ -40,9 +50,36 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styles: ``,
 })
 export class ShoppingCartItemComponent {
+  private readonly shoppingCartLocalStorageService = inject(
+    ShoppingCartLocalStorageService
+  );
+
   faPlus = faPlus;
   faMinus = faMinus;
   faTrashCan = faTrashCan;
 
   item = input<Product>();
+
+  incrementItemQuantity() {
+    this.shoppingCartLocalStorageService.updateItem({
+      ...this?.item()!,
+      quantity: this.item()?.quantity! + 1,
+    });
+  }
+
+  decrementItemQuantity() {
+    // Remove item when quantity equal to 0
+    if (this.item()?.quantity! <= 1) {
+      this.shoppingCartLocalStorageService.removeItem(this.item()!);
+    } else {
+      this.shoppingCartLocalStorageService.updateItem({
+        ...this?.item()!,
+        quantity: this.item()?.quantity! - 1,
+      });
+    }
+  }
+
+  removeItemQuantity() {
+    this.shoppingCartLocalStorageService.removeItem(this.item()!);
+  }
 }

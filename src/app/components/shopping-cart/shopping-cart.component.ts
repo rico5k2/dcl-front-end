@@ -3,10 +3,11 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
 import { faMinus, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-item.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [FontAwesomeModule, ShoppingCartItemComponent],
+  imports: [FontAwesomeModule, ShoppingCartItemComponent, RouterLink],
   template: `
     <div class="mx-auto flex gap-x-20 min-h-full">
       <div class="w-full pt-28 bg-gray-800 border-r-gray-900 pl-24 pr-10">
@@ -60,6 +61,7 @@ import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-i
             </div>
           </div>
         </fieldset>
+        @if(cartItemQuantity() >= 1) {
         <div class="border-t border-t-gray-900 pt-4 mt-4 space-y-2">
           <div class="flex items-center justify-between">
             <span>Total Quantity</span>
@@ -73,6 +75,7 @@ import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-i
         <button class="btn btn-primary w-full mt-2">
           Pay $ {{ totalPrice() }}
         </button>
+        }
       </div>
       <div class="w-full pt-28 pr-24 pl-10">
         <h2 class="text-xl font-bold uppercase">Summary Order</h2>
@@ -80,12 +83,25 @@ import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-i
           Check your item and select your shipping for better experience order
           item
         </p>
-        <div class="mt-4 border border-gray-900 rounded-lg px-4 py-6 space-y-6">
-          @for(item of cartItems(); track item.id) {
+        <div>
+          @if(cartItemQuantity() >= 1) {
           <div
-            class="border-b border-b-gray-900 pb-5 last:pb-0 last:border-b-0"
+            class="mt-4 border border-gray-900 rounded-lg px-4 py-6 space-y-6 max-h-[calc(100dvh-200px)] overflow-y-auto"
           >
-            <app-shopping-cart-item [item]="item" />
+            @for(item of cartItems(); track item.id) {
+            <div
+              class="border-b border-b-gray-900 pb-5 last:pb-0 last:border-b-0"
+            >
+              <app-shopping-cart-item [item]="item" />
+            </div>
+            }
+          </div>
+          } @else {
+          <div class="mt-10 flex items-center justify-center flex-col gap-y-2">
+            <p class="text-xl text-center text-gray-400">
+              No item in your shopping cart
+            </p>
+            <a routerLink="/" class="btn btn-soft">Continue shopping</a>
           </div>
           }
         </div>

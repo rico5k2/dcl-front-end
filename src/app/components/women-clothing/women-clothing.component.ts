@@ -7,7 +7,7 @@ import { ProductCardSkeletonComponent } from '../product-card-skeleton/product-c
   selector: 'app-women-clothing',
   imports: [ProductCardComponent, ProductCardSkeletonComponent],
   template: `
-    <div class="mt-28 my-20">
+    <div class="mt-28 pb-10">
       @if (isLoading()) {
       <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
         @for (item of [1,2,3,4]; track item) {

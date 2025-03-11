@@ -36,6 +36,17 @@ export class ShoppingCartLocalStorageService {
     this.saveItems(newItems);
   }
 
+  updateItem(item: Product) {
+    const newItems = this.cartItems().map((i) => {
+      if (i.id !== item.id) {
+        return i;
+      } else {
+        return item;
+      }
+    });
+    this.saveItems(newItems);
+  }
+
   clearItems() {
     localStorage.removeItem(this.key);
     this.cartItems.set([]);
