@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { Product } from '../../type';
 
 @Injectable({
@@ -8,7 +8,12 @@ export class ShoppingCartLocalStorageService {
   private readonly key = 'ng_e_commerce_ls';
 
   cartItems = signal<Product[]>(this.loadItems());
-  constructor() {}
+  cartItemQuantity = computed(() => {
+    return this.cartItems().reduce((a, c) => {
+      a += c?.quantity!;
+      return a;
+    }, 0);
+  });
 
   private loadItems(): Product[] {
     const data = localStorage.getItem(this.key);

@@ -75,11 +75,7 @@ export class HeaderComponent {
 
   faCartShopping = faCartShopping;
 
-  // Computed total quantity of cart items
-  cartItemQuantity = computed(() => {
-    return this.shoppingCartLocalStorageService.cartItems().reduce((a, c) => {
-      a += c?.quantity!;
-      return a;
-    }, 0);
-  });
+  cartItemQuantity = computed(() =>
+    this.shoppingCartLocalStorageService.cartItemQuantity()
+  );
 }

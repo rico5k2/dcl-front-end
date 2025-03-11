@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Product } from '../../../type';
 import { faMinus, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

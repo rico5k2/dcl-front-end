@@ -60,6 +60,19 @@ import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-i
             </div>
           </div>
         </fieldset>
+        <div class="border-t border-t-gray-900 pt-4 mt-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span>Total Quantity</span>
+            <span class="text-lg font-bold">{{ cartItemQuantity() }}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Total Amount</span>
+            <span class="text-lg font-bold">{{ totalPrice() }}</span>
+          </div>
+        </div>
+        <button class="btn btn-primary w-full mt-2">
+          Pay $ {{ totalPrice() }}
+        </button>
       </div>
       <div class="w-full pt-28 pr-24 pl-10">
         <h2 class="text-xl font-bold uppercase">Summary Order</h2>
@@ -89,4 +102,15 @@ export class ShoppingCartComponent {
   );
 
   cartItems = computed(() => this.shoppingCartLocalStorageService.cartItems());
+  cartItemQuantity = computed(() =>
+    this.shoppingCartLocalStorageService.cartItemQuantity()
+  );
+  totalPrice = computed(() => {
+    return new Intl.NumberFormat('en-IN').format(
+      this.cartItems().reduce((a, c) => {
+        a += c?.price * c?.quantity!;
+        return a;
+      }, 0)
+    );
+  });
 }
