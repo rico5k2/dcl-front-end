@@ -3,3 +3,9 @@
 @plugin "daisyui" {
   themes: dark --default;
 }
+
+html,
+:root,
+body {
+  height: 100%;
+}

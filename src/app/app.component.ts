@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [RouterOutlet, FontAwesomeModule, HeaderComponent],
   template: `
     <app-header />
-    <main class="my-10 mt-28">
+    <main class="h-full">
       <router-outlet />
     </main>
   `,

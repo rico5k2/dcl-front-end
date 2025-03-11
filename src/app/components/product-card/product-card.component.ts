@@ -17,7 +17,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
     >
       <figure>
         <img
-          class="w-full h-[290px] object-fill"
+          class="w-full h-[320px] object-fill"
           [src]="product()?.image"
           alt="Shoes"
         />

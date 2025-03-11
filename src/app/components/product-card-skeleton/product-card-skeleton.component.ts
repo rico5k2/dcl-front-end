@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="card skeleton bg-base-100 w-full h-full shadow-sm">
       <figure>
-        <div class="skeleton w-full h-[290px]"></div>
+        <div class="skeleton w-full h-[350px]"></div>
       </figure>
       <div class="card-body">
         <div class="skeleton w-full h-[35px] "></div>

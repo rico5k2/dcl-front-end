@@ -9,9 +9,9 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
   imports: [FontAwesomeModule, RouterLink, RouterLinkActive],
   template: `
     <header
-      class="w-full py-4 top-0 fixed bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-900 z-50"
+      class="w-full py-4 top-0 fixed bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-900 z-50"
     >
-      <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-x-5">
           <a class="text-xl" routerLink="/">NG-Commerce</a>
           <a
