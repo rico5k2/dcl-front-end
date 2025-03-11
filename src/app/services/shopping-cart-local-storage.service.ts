@@ -5,7 +5,7 @@ import { Product } from '../../type';
   providedIn: 'root',
 })
 export class ShoppingCartLocalStorageService {
-  private readonly key = 'ng_e_commerce_ls';
+  private readonly key = 'ng_e_commerce_cart_items';
 
   cartItems = signal<Product[]>(this.loadItems());
   cartItemQuantity = computed(() => {

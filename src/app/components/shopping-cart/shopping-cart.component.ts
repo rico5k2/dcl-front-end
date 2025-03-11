@@ -9,6 +9,7 @@ import {
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 import {
   faCheckCircle,
+  faExclamationCircle,
   faMinus,
   faPlus,
   faTrashCan,
@@ -23,6 +24,8 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { PaymentInfoLocalStorageService } from '../../services/payment-info-local-storage.service';
+import { PaymentInfoData } from '../../../type';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -53,7 +56,9 @@ import {
               required
               class="input validator w-full min-h-[80px]"
               placeholder="your address..."
-            ></textarea>
+              (change)="handleInputChange($event, 'address')"
+              >{{ paymentInfoData()?.address || '' }}</textarea
+            >
           </fieldset>
           <!-- Payment Method -->
           <fieldset class="mt-1 fieldset px-0 p-4">
@@ -68,6 +73,8 @@ import {
                   type="number"
                   required
                   class="input validator w-full"
+                  [value]="paymentInfoData()?.cardNumber"
+                  (change)="handleInputChange($event, 'cardNumber')"
                   placeholder="Enter your card number"
                 />
               </div>
@@ -75,8 +82,10 @@ import {
                 <div class="w-full space-y-2">
                   <label class="fieldset-label">Expiration Date</label>
                   <input
-                    type="text"
+                    type="number"
                     required
+                    [value]="paymentInfoData()?.expirationDate"
+                    (change)="handleInputChange($event, 'expirationDate')"
                     class="input w-full validator"
                     placeholder="MM/YY"
                   />
@@ -86,6 +95,8 @@ import {
                   <input
                     type="number"
                     required
+                    [value]="paymentInfoData()?.cvv"
+                    (change)="handleInputChange($event, 'cvv')"
                     class="input w-full validator"
                     placeholder="XXX"
                   />
@@ -96,12 +107,31 @@ import {
                 <input
                   required
                   type="text"
+                  [value]="paymentInfoData()?.nameOnCard ?? ''"
+                  (change)="handleInputChange($event, 'nameOnCard')"
                   class="input w-full validator"
                   placeholder="Enter your name"
                 />
               </div>
             </div>
           </fieldset>
+          <div class="w-full flex items-center justify-between gap-x-3">
+            <label class="fieldset-label">
+              <input
+                type="checkbox"
+                (change)="toggleRememberPaymentInfo($event)"
+                [checked]="rememberPaymentInfo()"
+                class="checkbox"
+              />
+              Remember payment information
+            </label>
+            <div
+              class="tooltip"
+              data-tip="Only save these information in your browser and does not send to anywhere. This entire app only run on client-side"
+            >
+              <fa-icon [icon]="faExclamationCircle"></fa-icon>
+            </div>
+          </div>
           @if(cartItemQuantity() >= 1) {
           <div class="border-t border-t-gray-900 pt-4 mt-4 space-y-2">
             <div class="flex items-center justify-between">
@@ -179,11 +209,18 @@ export class ShoppingCartComponent {
   faMinus = faMinus;
   faTrashCan = faTrashCan;
   faCheckCircle = faCheckCircle;
+  faExclamationCircle = faExclamationCircle;
+
   private readonly shoppingCartLocalStorageService = inject(
     ShoppingCartLocalStorageService
   );
+  private readonly paymentInfoLocalStorageService = inject(
+    PaymentInfoLocalStorageService
+  );
+
   private readonly router = inject(Router);
 
+  rememberPaymentInfo = signal(true);
   isLoading = signal(false);
   isSuccess = signal(false);
 
@@ -195,6 +232,10 @@ export class ShoppingCartComponent {
   cartItemQuantity = computed(() =>
     this.shoppingCartLocalStorageService.cartItemQuantity()
   );
+  paymentInfoData = signal(
+    this.paymentInfoLocalStorageService.paymentInfoData()
+  );
+
   totalPrice = computed(() => {
     return new Intl.NumberFormat('en-IN').format(
       this.cartItems().reduce((a, c) => {
@@ -219,8 +260,30 @@ export class ShoppingCartComponent {
     this.checkoutSuccessDialog()?.nativeElement.close();
     this.isLoading.set(false);
     this.isSuccess.set(false);
+
+    // Save payment info data
+    if (this.rememberPaymentInfo() && this.paymentInfoData()) {
+      this.paymentInfoLocalStorageService.saveData(this.paymentInfoData()!);
+    }
+
     // Clear localStorage for shopping cart items
     this.shoppingCartLocalStorageService.clearItems();
+    // Currently clear out the payment info form when form close
+    this.paymentInfoData.set(null);
     this.router.navigate(['/']);
+  }
+
+  toggleRememberPaymentInfo(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.rememberPaymentInfo.set(target.checked);
+  }
+
+  handleInputChange(event: Event, field: keyof PaymentInfoData) {
+    const target = event.target as HTMLInputElement;
+    // Update the corresponding field in the signal
+    this.paymentInfoData.set({
+      ...this.paymentInfoData()!,
+      [field]: target.value,
+    });
   }
 }
