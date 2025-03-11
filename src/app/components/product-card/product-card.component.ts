@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { Product } from '../../../type';
 import {
   faEye,
@@ -6,6 +6,7 @@ import {
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 
 @Component({
   selector: 'app-product-card',
@@ -50,7 +51,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
               </div>
             </div>
           </div>
-          <button class="mt-2 w-full btn btn-primary">
+          <button
+            [disabled]="checkItemAlreadyExist()"
+            (click)="addItem()"
+            class="mt-2 w-full btn btn-primary"
+          >
             <fa-icon [icon]="faCartShopping"></fa-icon>
             Add to Cart
           </button>
@@ -60,8 +65,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   `,
 })
 export class ProductCardComponent {
+  private readonly shoppingCartLocalStorageService = inject(
+    ShoppingCartLocalStorageService
+  );
+
   faHeart = faHeart;
   faEye = faEye;
   faCartShopping = faCartShopping;
   product = input<Product>();
+
+  cartItems = computed(() => this.shoppingCartLocalStorageService.cartItems());
+
+  addItem() {
+    this.shoppingCartLocalStorageService.addItem(this.product()!);
+  }
+
+  checkItemAlreadyExist() {
+    return this.cartItems().some((ct) => ct.id === this.product()?.id);
+  }
 }
