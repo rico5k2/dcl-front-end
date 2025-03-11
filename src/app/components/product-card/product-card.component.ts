@@ -1,9 +1,15 @@
 import { Component, input } from '@angular/core';
 import { Product } from '../../../type';
+import {
+  faEye,
+  faHeart,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [FontAwesomeModule],
   template: `
     <div
       class="card hover:bg-base-200 transition-all bg-base-100 w-full h-full shadow-sm"
@@ -24,13 +30,38 @@ import { Product } from '../../../type';
         <p class="line-clamp-3">
           {{ product()?.description }}
         </p>
-        <div class="card-actions justify-end capitalize">
-          <div class="badge badge-outline">{{ product()?.category }}</div>
+        <div class="card-actions mt-4 w-full">
+          <div class="flex items-center gap-x-2 w-full justify-between">
+            <div class="flex items-center gap-x-2">
+              <div class="tooltip" data-tip="View Detail">
+                <button class="btn btn-soft btn-sm">
+                  <fa-icon [icon]="faEye"></fa-icon>
+                </button>
+              </div>
+              <div class="tooltip" data-tip="Favorite">
+                <button class="btn btn-soft btn-sm">
+                  <fa-icon [icon]="faHeart"></fa-icon>
+                </button>
+              </div>
+            </div>
+            <div>
+              <div class="badge badge-outline capitalize">
+                {{ product()?.category }}
+              </div>
+            </div>
+          </div>
+          <button class="mt-2 w-full btn btn-primary">
+            <fa-icon [icon]="faCartShopping"></fa-icon>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   `,
 })
 export class ProductCardComponent {
+  faHeart = faHeart;
+  faEye = faEye;
+  faCartShopping = faCartShopping;
   product = input<Product>();
 }
