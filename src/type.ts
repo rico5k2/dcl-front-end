@@ -7,3 +7,11 @@ export interface Product {
   category: string;
   image: string;
 }
+
+export interface PaymentInfoData {
+  address: string;
+  cardNumber: number;
+  expirationDate: number;
+  cvv: number;
+  nameOnCard: string;
+}
