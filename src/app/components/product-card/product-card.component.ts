@@ -86,7 +86,9 @@ export class ProductCardComponent {
   }
 
   checkItemAlreadyExist() {
-    return this.cartItems().some((ct) => ct.id === this.product()?.id);
+    return this.shoppingCartLocalStorageService.checkItemAlreadyExist(
+      this.product()?.id!
+    );
   }
 
   onClickNavigate() {
