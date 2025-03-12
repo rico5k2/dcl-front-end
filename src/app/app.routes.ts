@@ -5,9 +5,15 @@ import { ElectronicsComponent } from './components/electronics/electronics.compo
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { MenClothingComponent } from './components/men-clothing/men-clothing.component';
 import { WomenClothingComponent } from './components/women-clothing/women-clothing.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 export const routes: Routes = [
   { path: '', title: 'Home', component: HomeComponent },
+  {
+    path: 'products/:id',
+    title: 'Product Details',
+    component: ProductDetailComponent,
+  },
   {
     path: 'men-clothing',
     title: `Men's Clothings`,

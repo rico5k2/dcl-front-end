@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -35,7 +36,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
           <div class="flex items-center gap-x-2 w-full justify-between">
             <div class="flex items-center gap-x-2">
               <div class="tooltip" data-tip="View Detail">
-                <button class="btn btn-soft btn-sm">
+                <button (click)="onClickNavigate()" class="btn btn-soft btn-sm">
                   <fa-icon [icon]="faEye"></fa-icon>
                 </button>
               </div>
@@ -68,6 +69,7 @@ export class ProductCardComponent {
   private readonly shoppingCartLocalStorageService = inject(
     ShoppingCartLocalStorageService
   );
+  private readonly router = inject(Router);
 
   faHeart = faHeart;
   faEye = faEye;
@@ -85,5 +87,9 @@ export class ProductCardComponent {
 
   checkItemAlreadyExist() {
     return this.cartItems().some((ct) => ct.id === this.product()?.id);
+  }
+
+  onClickNavigate() {
+    this.router.navigate(['/products', this.product()?.id]);
   }
 }

@@ -15,4 +15,9 @@ export class ApiService {
     );
     return (await data.json()) ?? [];
   }
+
+  async getProductById(id: string): Promise<Product | null> {
+    const data = await fetch(`${this.url}/products/${id}`);
+    return (await data.json()) ?? null;
+  }
 }
