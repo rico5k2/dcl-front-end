@@ -1,7 +1,7 @@
 import { Component, computed, inject, resource } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductCardSkeletonComponent } from '../product-card-skeleton/product-card-skeleton.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 
 @Component({
   selector: 'app-jewelry',

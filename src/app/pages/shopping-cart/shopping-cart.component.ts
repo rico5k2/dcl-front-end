@@ -15,7 +15,6 @@ import {
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ShoppingCartItemComponent } from '../shopping-cart-item/shopping-cart-item.component';
 import { Router, RouterLink } from '@angular/router';
 import {
   trigger,
@@ -26,6 +25,7 @@ import {
 } from '@angular/animations';
 import { PaymentInfoLocalStorageService } from '../../services/payment-info-local-storage.service';
 import { PaymentInfoData } from '../../../type';
+import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/shopping-cart-item.component';
 
 @Component({
   selector: 'app-shopping-cart',

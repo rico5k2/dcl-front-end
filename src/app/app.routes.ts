@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { JewelryComponent } from './components/jewelry/jewelry.component';
-import { ElectronicsComponent } from './components/electronics/electronics.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { MenClothingComponent } from './components/men-clothing/men-clothing.component';
-import { WomenClothingComponent } from './components/women-clothing/women-clothing.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { HomeComponent } from './pages/home/home.component';
+import { JewelryComponent } from './pages/jewelry/jewelry.component';
+import { ElectronicsComponent } from './pages/electronics/electronics.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { MenClothingComponent } from './pages/men-clothing/men-clothing.component';
+import { WomenClothingComponent } from './pages/women-clothing/women-clothing.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 export const routes: Routes = [
   { path: '', title: 'Home', component: HomeComponent },

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-e-commerce-ui": {
+    "angular-e-commerce-template": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -19,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-e-commerce-ui",
+            "outputPath": "dist/angular-e-commerce-template",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng-e-commerce-ui:build:production"
+              "buildTarget": "angular-e-commerce-template:build:production"
             },
             "development": {
-              "buildTarget": "ng-e-commerce-ui:build:development"
+              "buildTarget": "angular-e-commerce-template:build:development"
             }
           },
           "defaultConfiguration": "development"

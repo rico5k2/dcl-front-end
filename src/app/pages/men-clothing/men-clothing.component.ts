@@ -1,10 +1,10 @@
-import { Component, inject, resource, computed, effect } from '@angular/core';
+import { Component, computed, inject, resource } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductCardSkeletonComponent } from '../product-card-skeleton/product-card-skeleton.component';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-men-clothing',
   imports: [ProductCardComponent, ProductCardSkeletonComponent],
   template: `
     <div class="mt-28 pb-10">
@@ -25,19 +25,13 @@ import { ProductCardSkeletonComponent } from '../product-card-skeleton/product-c
     </div>
   `,
 })
-export class HomeComponent {
+export class MenClothingComponent {
+  private readonly productCategory = "men's clothing";
   private readonly apiService = inject(ApiService);
 
   productsResource = resource({
-    loader: () => this.apiService.getProducts(),
+    loader: () => this.apiService.getProducts(this.productCategory),
   });
 
   isLoading = computed(() => this.productsResource.isLoading());
-
-  errorEffect = effect(() => {
-    const error = this.productsResource.error() as Error;
-    if (error) {
-      console.log(error);
-    }
-  });
 }
