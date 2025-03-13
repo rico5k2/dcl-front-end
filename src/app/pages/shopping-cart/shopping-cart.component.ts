@@ -16,13 +16,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink } from '@angular/router';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { PaymentInfoLocalStorageService } from '../../services/payment-info-local-storage.service';
 import { PaymentInfoData } from '../../../type';
 import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/shopping-cart-item.component';
@@ -30,17 +23,9 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
 @Component({
   selector: 'app-shopping-cart',
   imports: [FontAwesomeModule, ShoppingCartItemComponent, RouterLink],
-  animations: [
-    trigger('fadeInScale', [
-      state('void', style({ opacity: 0, transform: 'scale(0.8)' })),
-      transition(':enter', [
-        animate('0.9s ease-out', style({ opacity: 1, transform: 'scale(1)' })),
-      ]),
-    ]),
-  ],
   template: `
     <div class="mx-auto flex gap-x-20 min-h-full">
-      <div class="w-full pt-28 bg-gray-800 border-r-gray-900 pl-24 pr-10">
+      <div class="w-full pt-28 bg-gray-800 border-r-gray-900 pl-24 pr-8">
         <h2 class="text-xl font-bold uppercase">Payment Detail</h2>
         <p>
           Complete your purchase item by providing your payment details order
@@ -152,8 +137,7 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
           }
         </form>
       </div>
-
-      <div class="w-full pt-28 pr-24 pl-10">
+      <div class="w-full pt-28 pr-24 pl-8">
         <h2 class="text-xl font-bold uppercase">Summary Order</h2>
         <p>
           Check your item and select your shipping for better experience order
@@ -189,7 +173,6 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
           <fa-icon
             [icon]="faCheckCircle"
             class="text-6xl text-emerald-500"
-            @fadeInScale
           ></fa-icon>
         </div>
         <h3 class="text-xl font-bold text-center">

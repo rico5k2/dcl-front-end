@@ -51,22 +51,26 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
           >
         </div>
         <div class="flex items-center gap-x-2">
-          <a routerLink="/favorite-items">
-            <button class="btn btn-ghost btn-lg">
-              <fa-icon [icon]="faHeart"></fa-icon>
-            </button>
+          <a
+            routerLink="/favorite-items"
+            class="btn btn-ghost"
+            routerLinkActive="bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <fa-icon [icon]="faHeart"></fa-icon>
           </a>
-          <a routerLink="/shopping-cart">
-            <button class="btn btn-ghost btn-lg relative">
-              <fa-icon [icon]="faCartShopping"></fa-icon>
-              @if (cartItemQuantity() >= 1) {
-              <div
-                class="absolute -top-2 -right-2 badge badge-primary badge-sm"
-              >
-                {{ cartItemQuantity() }}
-              </div>
-              }
-            </button>
+          <a
+            routerLink="/shopping-cart"
+            class="btn btn-ghost relative"
+            routerLinkActive="bg-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <fa-icon [icon]="faCartShopping"></fa-icon>
+            @if (cartItemQuantity() >= 1) {
+            <div class="absolute -top-2 -right-2 badge badge-primary badge-sm">
+              {{ cartItemQuantity() }}
+            </div>
+            }
           </a>
         </div>
       </div>
