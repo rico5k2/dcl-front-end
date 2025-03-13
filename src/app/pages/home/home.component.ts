@@ -3,10 +3,15 @@ import { ApiService } from '../../services/api.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ProductCardComponent, ProductCardSkeletonComponent],
+  imports: [
+    ProductCardComponent,
+    ProductCardSkeletonComponent,
+    FooterComponent,
+  ],
   template: `
     <div class="mt-28 pb-10 px-6">
       @if (isLoading()) {
@@ -27,6 +32,7 @@ import { Meta, Title } from '@angular/platform-browser';
       </div>
       }
     </div>
+    <app-footer />
   `,
 })
 export class HomeComponent {

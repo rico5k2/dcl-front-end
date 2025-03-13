@@ -21,6 +21,7 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-local-storage.service';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -28,12 +29,13 @@ import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-
     FontAwesomeModule,
     ProductCardComponent,
     ProductCardSkeletonComponent,
+    FooterComponent,
   ],
   template: `
     <div class="min-h-full">
       <div class="mx-auto pt-24 pb-10 px-6 max-w-7xl">
         <div
-          class="border-y border-y-gray-900 flex gap-x-2 justify-end py-2 mb-8"
+          class="border-y border-y-base-300 flex gap-x-2 justify-end py-2 mb-8"
         >
           <button
             (click)="toggleFavoriteItem()"
@@ -135,6 +137,7 @@ import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-
         </div>
       </div>
     </div>
+    <app-footer />
   `,
   styles: ``,
 })

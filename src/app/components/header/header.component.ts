@@ -14,7 +14,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
   imports: [FontAwesomeModule, RouterLink, RouterLinkActive],
   template: `
     <header
-      class="w-full py-4 top-0 fixed bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-900 z-50"
+      class="w-full py-4 top-0 fixed bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-90 z-50 border-b border-b-base-300"
     >
       <div class="max-w-7xl px-6 mx-auto flex items-center justify-between">
         <div class="flex items-center gap-x-5">
@@ -33,35 +33,35 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
               routerLink="/"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              class="hover:underline transition-all"
               >All</a
             >
             <a
               routerLink="/men-clothing"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              class="hover:underline transition-all"
               >Men</a
             >
             <a
               routerLink="/women-clothing"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              class="hover:underline transition-all"
               >Women</a
             >
             <a
               routerLink="/jewelry"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              class="hover:underline transition-all"
               >Jewelry</a
             >
             <a
               routerLink="/electronics"
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              class="hover:underline transition-all"
               >Electronics</a
             >
           </div>
@@ -70,7 +70,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
           <a
             routerLink="/favorite-items"
             class="btn btn-ghost"
-            routerLinkActive="bg-primary"
+            routerLinkActive="bg-primary text-white"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <fa-icon [icon]="faHeart"></fa-icon>
@@ -78,7 +78,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
           <a
             routerLink="/shopping-cart"
             class="btn btn-ghost relative"
-            routerLinkActive="bg-primary"
+            routerLinkActive="bg-primary text-white"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <fa-icon [icon]="faCartShopping"></fa-icon>
@@ -88,6 +88,11 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
             </div>
             }
           </a>
+          <select data-choose-theme>
+            <option value="dark">Default</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
         </div>
         <div class="block lg:hidden dropdown dropdown-end">
           <div tabindex="0" role="button" class="btn m-1">
@@ -102,7 +107,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >All</a
               >
             </li>
@@ -111,7 +116,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/men-clothing"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >Men</a
               >
             </li>
@@ -120,7 +125,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/women-clothing"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >Women</a
               >
             </li>
@@ -129,7 +134,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/jewelry"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >Jewelry</a
               >
             </li>
@@ -138,7 +143,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/electronics"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >Electronics</a
               >
             </li>
@@ -147,7 +152,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/favorite-items"
                 routerLinkActive="bg-primary"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="hover:underline transition-all"
                 >Favorite</a
               >
             </li>
@@ -156,7 +161,7 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 routerLink="/shopping-cart"
                 routerLinkActive="bg-primary"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="relative text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                class="relative hover:underline transition-all"
                 >Shopping Cart @if (cartItemQuantity() >= 1) {
                 <div
                   class="absolute -top-2 -right-2 badge badge-primary badge-sm"

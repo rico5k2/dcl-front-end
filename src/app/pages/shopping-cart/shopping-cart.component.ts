@@ -26,9 +26,7 @@ import { Meta, Title } from '@angular/platform-browser';
   imports: [FontAwesomeModule, ShoppingCartItemComponent, RouterLink],
   template: `
     <div class="mx-auto flex flex-col-reverse lg:flex-row gap-x-20 min-h-full">
-      <div
-        class="w-full py-14 lg:py-0 lg:pb-0 lg:pt-28 bg-gray-800 border-r-gray-900 px-6 lg:pl-24 lg:pr-8"
-      >
+      <div class="w-full py-14 lg:py-0 lg:pb-0 lg:pt-28 px-6 lg:pl-24 lg:pr-8">
         <h2 class="text-xl font-bold uppercase">Payment Detail</h2>
         <p>
           Complete your purchase item by providing your payment details order
@@ -124,7 +122,7 @@ import { Meta, Title } from '@angular/platform-browser';
             </div>
           </div>
           @if(cartItemQuantity() >= 1) {
-          <div class="border-t border-t-gray-900 pt-4 mt-4 space-y-2">
+          <div class="border-t border-t-base-300 pt-4 mt-4 space-y-2">
             <div class="flex items-center justify-between">
               <span>Total Quantity</span>
               <span class="text-lg font-bold">{{ cartItemQuantity() }}</span>
@@ -143,7 +141,9 @@ import { Meta, Title } from '@angular/platform-browser';
           }
         </form>
       </div>
-      <div class="w-full py-14 lg:pb-0 lg:py-0 pt-28 px-6 lg:pr-24 lg:pl-8">
+      <div
+        class="w-full pb-14 lg:pb-0 lg:py-0 pt-28 lg:pt-28 px-6 lg:pr-24 lg:pl-8"
+      >
         <h2 class="text-xl font-bold uppercase">Summary Order</h2>
         <p>
           Check your item and select your shipping for better experience order
