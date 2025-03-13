@@ -8,6 +8,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 import { Router } from '@angular/router';
+import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-local-storage.service';
 
 @Component({
   selector: 'app-product-card',
@@ -41,7 +42,14 @@ import { Router } from '@angular/router';
                 </button>
               </div>
               <div class="tooltip" data-tip="Favorite">
-                <button class="btn btn-soft btn-sm">
+                <button
+                  (click)="toggleFavoriteItem()"
+                  [class]="
+                    checkFavoriteItemAlreadyExist()
+                      ? 'btn btn-soft btn-primary btn-sm'
+                      : 'btn btn-soft btn-sm'
+                  "
+                >
                   <fa-icon [icon]="faHeart"></fa-icon>
                 </button>
               </div>
@@ -69,6 +77,9 @@ export class ProductCardComponent {
   private readonly shoppingCartLocalStorageService = inject(
     ShoppingCartLocalStorageService
   );
+  private readonly favoriteItemsLocalStorageService = inject(
+    FavoriteItemsLocalStorageService
+  );
   private readonly router = inject(Router);
 
   faHeart = faHeart;
@@ -89,6 +100,20 @@ export class ProductCardComponent {
     return this.shoppingCartLocalStorageService.checkItemAlreadyExist(
       this.product()?.id!
     );
+  }
+
+  checkFavoriteItemAlreadyExist() {
+    return this.favoriteItemsLocalStorageService.checkItemAlreadyExist(
+      this.product()?.id!
+    );
+  }
+
+  toggleFavoriteItem() {
+    if (this.checkFavoriteItemAlreadyExist()) {
+      this.favoriteItemsLocalStorageService.removeItem(this.product()!);
+    } else {
+      this.favoriteItemsLocalStorageService.addItem(this.product()!);
+    }
   }
 
   onClickNavigate() {

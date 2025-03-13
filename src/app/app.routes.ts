@@ -6,9 +6,15 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { MenClothingComponent } from './pages/men-clothing/men-clothing.component';
 import { WomenClothingComponent } from './pages/women-clothing/women-clothing.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { FavoriteItemsComponent } from './pages/favorite-items/favorite-items.component';
 
 export const routes: Routes = [
   { path: '', title: 'Home', component: HomeComponent },
+  {
+    path: 'favorite-items',
+    title: 'Favorite Items',
+    component: FavoriteItemsComponent,
+  },
   {
     path: 'products/:id',
     title: 'Product Details',

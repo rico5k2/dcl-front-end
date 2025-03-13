@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 
 @Component({
@@ -50,16 +50,25 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
             >Electronics</a
           >
         </div>
-        <a routerLink="/shopping-cart">
-          <button class="btn btn-lg relative">
-            <fa-icon [icon]="faCartShopping"></fa-icon>
-            @if (cartItemQuantity() >= 1) {
-            <div class="absolute -top-2 -right-2 badge badge-primary badge-sm">
-              {{ cartItemQuantity() }}
-            </div>
-            }
-          </button>
-        </a>
+        <div class="flex items-center gap-x-2">
+          <a routerLink="/favorite-items">
+            <button class="btn btn-ghost btn-lg">
+              <fa-icon [icon]="faHeart"></fa-icon>
+            </button>
+          </a>
+          <a routerLink="/shopping-cart">
+            <button class="btn btn-ghost btn-lg relative">
+              <fa-icon [icon]="faCartShopping"></fa-icon>
+              @if (cartItemQuantity() >= 1) {
+              <div
+                class="absolute -top-2 -right-2 badge badge-primary badge-sm"
+              >
+                {{ cartItemQuantity() }}
+              </div>
+              }
+            </button>
+          </a>
+        </div>
       </div>
     </header>
   `,
@@ -76,6 +85,7 @@ export class HeaderComponent {
   );
 
   faCartShopping = faCartShopping;
+  faHeart = faHeart;
 
   cartItemQuantity = computed(() =>
     this.shoppingCartLocalStorageService.cartItemQuantity()
