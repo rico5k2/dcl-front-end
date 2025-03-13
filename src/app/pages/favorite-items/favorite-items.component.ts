@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-local-storage.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-favorite-items',
@@ -23,6 +24,21 @@ import { ProductCardComponent } from '../../components/product-card/product-card
   styles: ``,
 })
 export class FavoriteItemsComponent {
+  constructor(private meta: Meta, private title: Title) {
+    this.title.setTitle('Favorite Items');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        "Favorite Items Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+    this.meta.updateTag({ property: 'og:title', content: 'Favorite Items' });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        "Favorite Items Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+  }
+
   private readonly favoriteItemsLocalStorageService = inject(
     FavoriteItemsLocalStorageService
   );

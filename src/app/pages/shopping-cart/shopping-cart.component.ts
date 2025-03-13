@@ -19,6 +19,7 @@ import { Router, RouterLink } from '@angular/router';
 import { PaymentInfoLocalStorageService } from '../../services/payment-info-local-storage.service';
 import { PaymentInfoData } from '../../../type';
 import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/shopping-cart-item.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -190,6 +191,21 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
   `,
 })
 export class ShoppingCartComponent {
+  constructor(private meta: Meta, private title: Title) {
+    this.title.setTitle('Shopping Cart');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        "Shopping Cart Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+    this.meta.updateTag({ property: 'og:title', content: 'Shopping Cart' });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        "Shopping Cart Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+  }
+
   faPlus = faPlus;
   faMinus = faMinus;
   faTrashCan = faTrashCan;

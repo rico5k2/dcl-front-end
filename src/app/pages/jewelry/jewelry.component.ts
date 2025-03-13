@@ -2,6 +2,7 @@ import { Component, computed, inject, resource } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-jewelry',
@@ -30,6 +31,21 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
   `,
 })
 export class JewelryComponent {
+  constructor(private meta: Meta, private title: Title) {
+    this.title.setTitle('Jewelry');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        "Jewelry Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+    this.meta.updateTag({ property: 'og:title', content: 'Jewelry' });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        "Jewelry Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+    });
+  }
+
   private readonly productCategory = 'jewelery';
   private readonly apiService = inject(ApiService);
 

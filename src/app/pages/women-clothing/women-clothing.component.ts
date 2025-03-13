@@ -32,17 +32,17 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class WomenClothingComponent {
   constructor(private meta: Meta, private title: Title) {
-    this.title.setTitle('Home');
+    this.title.setTitle("Women's Clothings");
     this.meta.updateTag({
       name: 'description',
       content:
-        "Home Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+        "Women's Clothings Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
     });
-    this.meta.updateTag({ property: 'og:title', content: 'Home' });
+    this.meta.updateTag({ property: 'og:title', content: "Women's Clothings" });
     this.meta.updateTag({
       property: 'og:description',
       content:
-        "Home Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
+        "Women's Clothings Page - This is a modern, responsive e-commerce template built Angular and TailwindCSS. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.",
     });
   }
 
