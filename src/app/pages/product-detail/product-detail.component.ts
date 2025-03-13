@@ -16,13 +16,19 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [FontAwesomeModule],
+  imports: [
+    FontAwesomeModule,
+    ProductCardComponent,
+    ProductCardSkeletonComponent,
+  ],
   template: `
     <div class="min-h-full">
-      <div class="mx-auto pt-28 pb-10 max-w-7xl ">
+      <div class="mx-auto pt-24 pb-10 max-w-7xl">
         <div class="border-y border-y-gray-900 flex justify-end py-2 mb-8">
           <div class="flex items-center gap-x-2">
             <button
@@ -55,7 +61,6 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
                 [alt]="this.productResource.value()?.title"
               />
             </figure>
-
             }
           </div>
           <div class="w-full">
@@ -89,6 +94,25 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
           </div>
         </div>
       </div>
+      <div class="mx-auto pt-28 pb-10 max-w-7xl">
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold mb-8">Other similar products</h3>
+          @if (isLoadingSimilarProductResource()) {
+          <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+            @for (item of [1,2,3,4]; track item) {
+            <app-product-card-skeleton />
+            }
+          </div>
+          } @else {
+          <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+            @for (similarProduct of similarProductResource.value(); track
+            similarProduct.id) {
+            <app-product-card [product]="similarProduct" />
+            }
+          </div>
+          }
+        </div>
+      </div>
     </div>
   `,
   styles: ``,
@@ -111,9 +135,18 @@ export class ProductDetailComponent implements OnInit {
     request: () => ({ id: this.productId() }),
     loader: ({ request }) => this.apiService.getProductById(request.id),
   });
+  similarProductResource = resource({
+    request: () => ({ category: this.productResource.value()?.category }),
+    loader: ({ request }) =>
+      this.apiService.getProductsWithLimit(4, request.category),
+  });
+
   isFirstItem = computed(() => Number(this.productId()) === 1);
   isLastItem = computed(() => Number(this.productId()) === 20);
   isLoading = computed(() => this.productResource.isLoading());
+  isLoadingSimilarProductResource = computed(() =>
+    this.similarProductResource.isLoading()
+  );
 
   errorEffect = effect(() => {
     const error = this.productResource.error() as Error;

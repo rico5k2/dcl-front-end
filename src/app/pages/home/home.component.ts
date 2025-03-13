@@ -20,7 +20,6 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
         <app-product-card [product]="product" />
         }
       </div>
-
       }
     </div>
   `,
