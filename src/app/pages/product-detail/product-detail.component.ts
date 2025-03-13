@@ -14,11 +14,13 @@ import {
   faCartShopping,
   faChevronLeft,
   faChevronRight,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductCardSkeletonComponent } from '../../components/product-card-skeleton/product-card-skeleton.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { FavoriteItemsLocalStorageService } from '../../services/favorite-items-local-storage.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -30,7 +32,19 @@ import { Meta, Title } from '@angular/platform-browser';
   template: `
     <div class="min-h-full">
       <div class="mx-auto pt-24 pb-10 px-6 max-w-7xl">
-        <div class="border-y border-y-gray-900 flex justify-end py-2 mb-8">
+        <div
+          class="border-y border-y-gray-900 flex gap-x-2 justify-end py-2 mb-8"
+        >
+          <button
+            (click)="toggleFavoriteItem()"
+            [class]="
+              checkFavoriteItemAlreadyExist()
+                ? 'btn btn-soft btn-primary btn-md'
+                : 'btn btn-soft btn-md'
+            "
+          >
+            <fa-icon [icon]="faHeart"></fa-icon>
+          </button>
           <div class="flex items-center gap-x-2">
             <button
               [disabled]="isFirstItem()"
@@ -142,6 +156,7 @@ export class ProductDetailComponent implements OnInit {
 
   faCartShopping = faCartShopping;
   faChevronRight = faChevronRight;
+  faHeart = faHeart;
   faChevronLeft = faChevronLeft;
 
   private readonly apiService = inject(ApiService);
@@ -149,6 +164,9 @@ export class ProductDetailComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly shoppingCartLocalStorageService = inject(
     ShoppingCartLocalStorageService
+  );
+  private readonly favoriteItemsLocalStorageService = inject(
+    FavoriteItemsLocalStorageService
   );
 
   productId = signal<string>('');
@@ -213,5 +231,23 @@ export class ProductDetailComponent implements OnInit {
       ...this?.productResource.value()!,
       quantity: 1, // Add default quantity
     });
+  }
+
+  checkFavoriteItemAlreadyExist() {
+    return this.favoriteItemsLocalStorageService.checkItemAlreadyExist(
+      this.productResource.value()?.id!
+    );
+  }
+
+  toggleFavoriteItem() {
+    if (this.checkFavoriteItemAlreadyExist()) {
+      this.favoriteItemsLocalStorageService.removeItem(
+        this.productResource.value()!
+      );
+    } else {
+      this.favoriteItemsLocalStorageService.addItem(
+        this.productResource.value()!
+      );
+    }
   }
 }

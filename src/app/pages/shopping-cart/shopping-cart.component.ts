@@ -113,10 +113,13 @@ import { Meta, Title } from '@angular/platform-browser';
               />
               Remember payment information
             </label>
-            <div
-              class="tooltip"
-              data-tip="Only save these information in your browser and does not send to anywhere. This entire app only run on client-side"
-            >
+            <div class="tooltip tooltip-left">
+              <div class="tooltip-content">
+                <div class="text-sm w-[250px]">
+                  Only save these information in your browser and does not send
+                  to anywhere. This entire app only run on client-side
+                </div>
+              </div>
               <fa-icon [icon]="faExclamationCircle"></fa-icon>
             </div>
           </div>
