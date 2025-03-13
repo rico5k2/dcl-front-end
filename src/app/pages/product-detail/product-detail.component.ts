@@ -28,7 +28,7 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
   ],
   template: `
     <div class="min-h-full">
-      <div class="mx-auto pt-24 pb-10 max-w-7xl">
+      <div class="mx-auto pt-24 pb-10 px-6 max-w-7xl">
         <div class="border-y border-y-gray-900 flex justify-end py-2 mb-8">
           <div class="flex items-center gap-x-2">
             <button
@@ -47,16 +47,18 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
             </button>
           </div>
         </div>
-        <div class="flex justify-between gap-x-10">
-          <div class="w-[70%]">
+        <div
+          class="flex flex-col-reverse lg:flex-row gap-y-10 justify-between gap-x-10"
+        >
+          <div class="w-full md:w-[70%]">
             @if (this.productResource.isLoading()) {
             <figure>
-              <div class="w-full h-[550px] skeleton"></div>
+              <div class="w-full h-[350px] md:h-[550px] skeleton"></div>
             </figure>
             } @else {
             <figure>
               <img
-                class="w-full h-[550px]"
+                class="w-full h-[350px] md:h-[550px]"
                 [src]="this.productResource.value()?.image"
                 [alt]="this.productResource.value()?.title"
               />
@@ -94,17 +96,21 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
           </div>
         </div>
       </div>
-      <div class="mx-auto pt-28 pb-10 max-w-7xl">
+      <div class="mx-auto pt-28 pb-10 px-6 max-w-7xl">
         <div class="mt-10">
           <h3 class="text-2xl font-bold mb-8">Other similar products</h3>
           @if (isLoadingSimilarProductResource()) {
-          <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto max-w-7xl gap-6"
+          >
             @for (item of [1,2,3,4]; track item) {
             <app-product-card-skeleton />
             }
           </div>
           } @else {
-          <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto max-w-7xl gap-6"
+          >
             @for (similarProduct of similarProductResource.value(); track
             similarProduct.id) {
             <app-product-card [product]="similarProduct" />

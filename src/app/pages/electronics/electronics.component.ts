@@ -7,15 +7,19 @@ import { ProductCardSkeletonComponent } from '../../components/product-card-skel
   selector: 'app-electronics',
   imports: [ProductCardComponent, ProductCardSkeletonComponent],
   template: `
-    <div class="mt-28 pb-10">
+    <div class="mt-28 pb-10 px-6">
       @if (isLoading()) {
-      <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto max-w-7xl gap-6"
+      >
         @for (item of [1,2,3,4]; track item) {
         <app-product-card-skeleton />
         }
       </div>
       } @else {
-      <div class="grid grid-cols-4 mx-auto max-w-7xl gap-6">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mx-auto max-w-7xl gap-6"
+      >
         @for (product of productsResource.value(); track product.id) {
         <app-product-card [product]="product" />
         }

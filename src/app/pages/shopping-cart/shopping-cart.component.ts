@@ -24,8 +24,10 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
   selector: 'app-shopping-cart',
   imports: [FontAwesomeModule, ShoppingCartItemComponent, RouterLink],
   template: `
-    <div class="mx-auto flex gap-x-20 min-h-full">
-      <div class="w-full pt-28 bg-gray-800 border-r-gray-900 pl-24 pr-8">
+    <div class="mx-auto flex flex-col-reverse lg:flex-row gap-x-20 min-h-full">
+      <div
+        class="w-full py-14 lg:py-0 lg:pb-0 lg:pt-28 bg-gray-800 border-r-gray-900 px-6 lg:pl-24 lg:pr-8"
+      >
         <h2 class="text-xl font-bold uppercase">Payment Detail</h2>
         <p>
           Complete your purchase item by providing your payment details order
@@ -137,7 +139,7 @@ import { ShoppingCartItemComponent } from '../../components/shopping-cart-item/s
           }
         </form>
       </div>
-      <div class="w-full pt-28 pr-24 pl-8">
+      <div class="w-full py-14 lg:pb-0 lg:py-0 pt-28 px-6 lg:pr-24 lg:pl-8">
         <h2 class="text-xl font-bold uppercase">Summary Order</h2>
         <p>
           Check your item and select your shipping for better experience order

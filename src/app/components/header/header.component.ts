@@ -1,7 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartShopping,
+  faHamburger,
+  faHeart,
+  faShoppingBag,
+} from '@fortawesome/free-solid-svg-icons';
 import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-local-storage.service';
 
 @Component({
@@ -11,46 +16,57 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
     <header
       class="w-full py-4 top-0 fixed bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-900 z-50"
     >
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="max-w-7xl px-6 mx-auto flex items-center justify-between">
         <div class="flex items-center gap-x-5">
-          <a class="text-xl btn btn-ghost" routerLink="/">NG-Commerce</a>
           <a
+            class="flex items-center gap-x-3 text-xl btn btn-ghost group"
             routerLink="/"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
-            >All</a
           >
-          <a
-            routerLink="/men-clothing"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
-            >Men</a
-          >
-          <a
-            routerLink="/women-clothing"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
-            >Women</a
-          >
-          <a
-            routerLink="/jewelry"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
-            >Jewelry</a
-          >
-          <a
-            routerLink="/electronics"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
-            >Electronics</a
-          >
+            <fa-icon
+              class="group-hover:text-primary"
+              [icon]="faShoppingBag"
+            ></fa-icon>
+            <span class="hidden lg:block">NG-Commerce</span>
+          </a>
+          <div class="items-center gap-x-5 hidden lg:flex">
+            <a
+              routerLink="/"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              >All</a
+            >
+            <a
+              routerLink="/men-clothing"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              >Men</a
+            >
+            <a
+              routerLink="/women-clothing"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              >Women</a
+            >
+            <a
+              routerLink="/jewelry"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              >Jewelry</a
+            >
+            <a
+              routerLink="/electronics"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+              >Electronics</a
+            >
+          </div>
         </div>
-        <div class="flex items-center gap-x-2">
+        <div class="hidden lg:flex items-center gap-x-2">
           <a
             routerLink="/favorite-items"
             class="btn btn-ghost"
@@ -73,6 +89,85 @@ import { ShoppingCartLocalStorageService } from '../../services/shopping-cart-lo
             }
           </a>
         </div>
+        <div class="block lg:hidden dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn m-1">
+            <fa-icon [icon]="faHamburger"></fa-icon>
+          </div>
+          <ul
+            tabindex="0"
+            class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            <li>
+              <a
+                routerLink="/"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >All</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/men-clothing"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Men</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/women-clothing"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Women</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/jewelry"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Jewelry</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/electronics"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Electronics</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/favorite-items"
+                routerLinkActive="bg-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Favorite</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/shopping-cart"
+                routerLinkActive="bg-primary"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="relative text-gray-300 hover:text-gray-100 hover:underline transition-all"
+                >Shopping Cart @if (cartItemQuantity() >= 1) {
+                <div
+                  class="absolute -top-2 -right-2 badge badge-primary badge-sm"
+                >
+                  {{ cartItemQuantity() }}
+                </div>
+                }
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   `,
@@ -89,6 +184,8 @@ export class HeaderComponent {
   );
 
   faCartShopping = faCartShopping;
+  faShoppingBag = faShoppingBag;
+  faHamburger = faHamburger;
   faHeart = faHeart;
 
   cartItemQuantity = computed(() =>

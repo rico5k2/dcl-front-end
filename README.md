@@ -2,9 +2,6 @@
 
 This is a modern, responsive e-commerce template built with **Angular** and **TailwindCSS**. It's designed to be a starting point for building full-featured e-commerce applications. The template includes a clean and customizable design, ideal for minimalist online stores.
 
-❗️This template is still under development.
-I'm trying my best to be able to deliver this template with quality. After finishing some percentage of UI part, I'm also planning to start building my own Backend. So, please stay tuned.❗️
-
 ## Features 🚀
 
 - **Responsive Layout**: Fully responsive design optimized for mobile, tablet, and desktop.
@@ -23,11 +20,7 @@ I'm trying my best to be able to deliver this template with quality. After finis
 - **Daisy UI**
 - **TypeScript**
 - **Font Awesome**
-- **FakeStore API** (For prototyping, later I will also provide backend for this e-commerce)
-
-## Future plan
-
-**`To be able to deliver high-quality, fully-functional, features rich, highly-customizable, open-source, self-hosted E-commerce platform.`**
+- **FakeStore API** (For prototyping)
 
 ## Contribution
 
