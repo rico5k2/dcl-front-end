@@ -5,19 +5,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { themeChange } from 'theme-change';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, FontAwesomeModule, HeaderComponent],
-  template: `
-    <app-header />
-    <main class="h-full">
-      <router-outlet />
-    </main>
-  `,
+    selector: 'app-root',
+    imports: [RouterOutlet, FontAwesomeModule, HeaderComponent],
+    templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  title = 'Angular E-Commerce Template';
+    title = 'DCL E-Commerce';
 
-  ngOnInit(): void {
-    themeChange(false);
-  }
+    ngOnInit(): void {
+        themeChange(false);
+    }
 }
